@@ -2,12 +2,12 @@ package dsa.element;
 
 
 public class Student extends People {
-	private String sId;	//ѧ��
+	private String sId;	//学号
 	//Constructor
 	public Student() {
 		this("","",""); 
 	}
-	public Student(String name,String id,String sId){
+	public Student(String name, String id, String sId){
 		super(name,id);
 		this.sId = sId;
 	}

@@ -8,6 +8,9 @@ public class Test {
         new Test().testListArray();
     }
 
+    /**
+     * 测试单链表
+     */
     private void test1() {
         ListSLinked listSLinked = new ListSLinked(new DefaultStrategy());
         listSLinked.insertFirst("a");
@@ -25,7 +28,7 @@ public class Test {
     }
 
     /**
-     * 测试{@link LinkedListDLNode},重现其含有bug
+     * 测试双向链表{@link LinkedListDLNode},重现其含有bug
      */
     public void testLinkedListDLNode1() {
         LinkedListDLNode nodes = new LinkedListDLNode();
@@ -44,6 +47,9 @@ public class Test {
         System.out.println(nodes);
     }
 
+    /**
+     * 测试线性表
+     */
     public void testListArray(){
         ListArray list = new ListArray();
         list.insertLast("A");
@@ -53,5 +59,9 @@ public class Test {
         System.out.println(list.get(1));
         System.out.println(list.get(2));
         System.out.println(list.getSize());
+        list.remove(2);
+        System.out.println(list.getSize());
+        list.insertBefore("A","Z");
+        System.out.println(list);
     }
 }

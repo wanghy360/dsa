@@ -3,36 +3,36 @@ package dsa.adt;
 import dsa.exception.OutOfBoundaryException;
 
 public interface List {
-    //·µ»ØÏßĞÔ±íµÄ´óĞ¡£¬¼´Êı¾İÔªËØµÄ¸öÊı¡£
+    //è¿”å›çº¿æ€§è¡¨çš„å¤§å°ï¼Œå³æ•°æ®å…ƒç´ çš„ä¸ªæ•°ã€‚
     int getSize();
 
-    //Èç¹ûÏßĞÔ±íÎª¿Õ·µ»Øtrue£¬·ñÔò·µ»Øfalse¡£
+    //å¦‚æœçº¿æ€§è¡¨ä¸ºç©ºè¿”å›trueï¼Œå¦åˆ™è¿”å›falseã€‚
     boolean isEmpty();
 
-    //ÅĞ¶ÏÏßĞÔ±íÊÇ·ñ°üº¬Êı¾İÔªËØe
+    //åˆ¤æ–­çº¿æ€§è¡¨æ˜¯å¦åŒ…å«æ•°æ®å…ƒç´ e
     boolean contains(Object e);
 
-    //·µ»ØÊı¾İÔªËØeÔÚÏßĞÔ±íÖĞµÄĞòºÅ
+    //è¿”å›æ•°æ®å…ƒç´ eåœ¨çº¿æ€§è¡¨ä¸­çš„åºå·
     int indexOf(Object e);
 
-    //½«Êı¾İÔªËØe²åÈëµ½ÏßĞÔ±íÖĞiºÅÎ»ÖÃ
+    //å°†æ•°æ®å…ƒç´ eæ’å…¥åˆ°çº¿æ€§è¡¨ä¸­iå·ä½ç½®
     void insert(int i, Object e) throws OutOfBoundaryException;
 
-    //½«Êı¾İÔªËØe²åÈëµ½ÔªËØobjÖ®Ç°
+    //å°†æ•°æ®å…ƒç´ eæ’å…¥åˆ°å…ƒç´ objä¹‹å‰
     boolean insertBefore(Object obj, Object e);
 
-    //½«Êı¾İÔªËØe²åÈëµ½ÔªËØobjÖ®ºó
+    //å°†æ•°æ®å…ƒç´ eæ’å…¥åˆ°å…ƒç´ objä¹‹å
     boolean insertAfter(Object obj, Object e);
 
-    //É¾³ıÏßĞÔ±íÖĞĞòºÅÎªiµÄÔªËØ,²¢·µ»ØÖ®
+    //åˆ é™¤çº¿æ€§è¡¨ä¸­åºå·ä¸ºiçš„å…ƒç´ ,å¹¶è¿”å›ä¹‹
     Object remove(int i) throws OutOfBoundaryException;
 
-    //É¾³ıÏßĞÔ±íÖĞµÚÒ»¸öÓëeÏàÍ¬µÄÔªËØ
+    //åˆ é™¤çº¿æ€§è¡¨ä¸­ç¬¬ä¸€ä¸ªä¸eç›¸åŒçš„å…ƒç´ 
     boolean remove(Object e);
 
-    //Ìæ»»ÏßĞÔ±íÖĞĞòºÅÎªiµÄÊı¾İÔªËØÎªe£¬·µ»ØÔ­Êı¾İÔªËØ
+    //æ›¿æ¢çº¿æ€§è¡¨ä¸­åºå·ä¸ºiçš„æ•°æ®å…ƒç´ ä¸ºeï¼Œè¿”å›åŸæ•°æ®å…ƒç´ 
     Object replace(int i, Object e) throws OutOfBoundaryException;
 
-    //·µ»ØÏßĞÔ±íÖĞĞòºÅÎªiµÄÊı¾İÔªËØ
+    //è¿”å›çº¿æ€§è¡¨ä¸­åºå·ä¸ºiçš„æ•°æ®å…ƒç´ 
     Object get(int i) throws OutOfBoundaryException;
 }

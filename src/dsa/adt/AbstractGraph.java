@@ -3,9 +3,9 @@ package dsa.adt;
 import dsa.exception.UnsupportedOperation;
 
 public abstract class AbstractGraph implements Graph {
-	protected LinkedList vertexs;//�����
-	protected LinkedList edges;	//�߱�
-	protected int type;			//ͼ������
+	protected LinkedList vertexs;//顶点表
+	protected LinkedList edges;	//边表
+	protected int type;			//图的类型
 	
 	public AbstractGraph(int type){
 		this.type = type;
@@ -13,68 +13,68 @@ public abstract class AbstractGraph implements Graph {
 		edges = new LinkedListDLNode();
 	}
 	
-	//����ͼ������
+	//返回图的类型
 	public int getType(){
 		return type;
 	}
-	//����ͼ�Ķ�����
+	//返回图的顶点数
 	public int getVexNum() {
 		return vertexs.getSize();
 	}
 	
-	//����ͼ�ı���
+	//返回图的边数
 	public int getEdgeNum() {
 		return edges.getSize();
 	}
 	
-	//����ͼ�����ж���
+	//返回图的所有顶点
 	public Iterator getVertex() {
 		return vertexs.elements();
 	}
 
-	//����ͼ�����б�
+	//返回图的所有边
 	public Iterator getEdge() {
 		return edges.elements();
 	}
 	
-	//���һ������v
+	//添加一个顶点v
 	public Node insert(Vertex v) {
 		return vertexs.insertLast(v);
 	}
 
-	//���һ����e
+	//添加一条边e
 	public Node insert(Edge e) {
 		return edges.insertLast(e);
 	}
 
-	//�ж϶���u��v�Ƿ��ڽӣ����Ƿ��бߴ�u��v
+	//判断顶点u、v是否邻接，即是否有边从u到v
 	public boolean areAdjacent(Vertex u, Vertex v) {
 		return edgeFromTo(u,v)!=null;
 	}
 	
-	//��ͼ����������ȱ���
+	//对图进行深度优先遍历
 	public Iterator DFSTraverse(Vertex v) {
-		LinkedList traverseSeq = new LinkedListDLNode();//�������
-		resetVexStatus();			//���ö���״̬
-		DFS(v, traverseSeq);		//��v����������������
-		Iterator it = getVertex();	//��ͼ��δ�����ʵ��������������������
+		LinkedList traverseSeq = new LinkedListDLNode();//遍历结果
+		resetVexStatus();			//重置顶点状态
+		DFS(v, traverseSeq);		//从v点出发深度优先搜索
+		Iterator it = getVertex();	//从图中未曾访问的其他顶点出发重新搜索
 		for(it.first(); !it.isDone(); it.next()){
 			Vertex u = (Vertex)it.currentItem();
 			if (!u.isVisited()) DFS(u, traverseSeq);
 		}
 		return traverseSeq.elements();
 	}
-	//������ȵĵݹ��㷨
+	//深度优先的递归算法
 	private void DFSRecursion(Vertex v, LinkedList list){
 		v.setToVisited();
 		list.insertLast(v);
-		Iterator it = adjVertexs(v);//ȡ�ö���v�������ڽӵ�
+		Iterator it = adjVertexs(v);//取得顶点v的所有邻接点
 		for(it.first(); !it.isDone(); it.next()){
 			Vertex u = (Vertex)it.currentItem();
 			if (!u.isVisited()) DFSRecursion(u,list);
 		}
 	}
-	//������ȵķǵݹ��㷨
+	//深度优先的非递归算法
 	private void DFS(Vertex v, LinkedList list){
 		Stack s = new StackSLinked();
 		s.push(v);
@@ -92,12 +92,12 @@ public abstract class AbstractGraph implements Graph {
 		}//while
 	}
 
-	//��ͼ���й�����ȱ���
+	//对图进行广度优先遍历
 	public Iterator BFSTraverse(Vertex v) {
-		LinkedList traverseSeq = new LinkedListDLNode();//�������
-		resetVexStatus();			//���ö���״̬
-		BFS(v, traverseSeq);		//��v����������������
-		Iterator it = getVertex();	//��ͼ��δ�����ʵ��������������������
+		LinkedList traverseSeq = new LinkedListDLNode();//遍历结果
+		resetVexStatus();			//重置顶点状态
+		BFS(v, traverseSeq);		//从v点出发广度优先搜索
+		Iterator it = getVertex();	//从图中未曾访问的其他顶点出发重新搜索
 		for(it.first(); !it.isDone(); it.next()){
 			Vertex u = (Vertex)it.currentItem();
 			if (!u.isVisited()) BFS(u, traverseSeq);
@@ -123,11 +123,11 @@ public abstract class AbstractGraph implements Graph {
 		}//while
 	}
 
-	//�󶥵�v��������������·��
+	//求顶点v到其他顶点的最短路径
 	public Iterator shortestPath(Vertex v) {
 		LinkedList sPath = new LinkedListDLNode();
-		resetVexStatus();//����ͼ�и������״̬��Ϣ
-		Iterator it = getVertex();//��ʼ������v�����������̾����ʼ��Ϊ��vֱ�ӿɴ�ľ���
+		resetVexStatus();//重置图中各顶点的状态信息
+		Iterator it = getVertex();//初始化，将v到各顶点的最短距离初始化为由v直接可达的距离
 		for(it.first(); !it.isDone(); it.next()){
 			Vertex u = (Vertex)it.currentItem();
 			int weight = Integer.MAX_VALUE;
@@ -138,26 +138,26 @@ public abstract class AbstractGraph implements Graph {
 			Path p = new Path(weight,v,u);
 			setPath(u, p);
 		}
-		v.setToVisited();//����v���뼯��S,��visited=true��ʾ����S����������S
-		sPath.insertLast(getPath(v));//��õ����·���������ӱ�
-		for (int t=1;t<getVexNum();t++){//����n-1��ѭ���ҵ�n-1�����·��
-			Vertex k = selectMin(it);//�м䶥��k������ѡ����������ĵ㣬������Ϊ��
-			k.setToVisited();				//����k����S
-			sPath.insertLast(getPath(k));	//��õ����·���������ӱ�
-			int distK = getDistance(k);		//��kΪ�м䶥���޸�v��V-S�ж���ĵ�ǰ���·��
-			Iterator adjIt = adjVertexs(k);	//ȡ��k�������ڽӵ�
+		v.setToVisited();//顶点v进入集合S,以visited=true表示属于S，否则不属于S
+		sPath.insertLast(getPath(v));//求得的最短路径进入链接表
+		for (int t=1;t<getVexNum();t++){//进行n-1次循环找到n-1条最短路径
+			Vertex k = selectMin(it);//中间顶点k。可能选出无穷大距离的点，但不会为空
+			k.setToVisited();				//顶点k加入S
+			sPath.insertLast(getPath(k));	//求得的最短路径进入链接表
+			int distK = getDistance(k);		//以k为中间顶点修改v到V-S中顶点的当前最短路径
+			Iterator adjIt = adjVertexs(k);	//取出k的所有邻接点
 			for(adjIt.first(); !adjIt.isDone(); adjIt.next()){
 				Vertex adjV = (Vertex)adjIt.currentItem();
 				Edge e = edgeFromTo(k,adjV);
-				if ((long)distK+(long)e.getWeight()<(long)getDistance(adjV)){//���ָ��̵�·��
+				if ((long)distK+(long)e.getWeight()<(long)getDistance(adjV)){//发现更短的路径
 					setDistance(adjV, distK+e.getWeight());
-					amendPathInfo(k,adjV);	//��k��·����Ϣ�޸�adjV��·����Ϣ
+					amendPathInfo(k,adjV);	//以k的路径信息修改adjV的路径信息
 				}
 			}//for
 		}//for(int t=1...
 		return sPath.elements();
 	}
-	//�ڶ��㼯����ѡ��·��������С��
+	//在顶点集合中选择路径距离最小的
 	protected Vertex selectMin(Iterator it){
 		Vertex min = null;
 		for(it.first(); !it.isDone(); it.next()){
@@ -171,7 +171,7 @@ public abstract class AbstractGraph implements Graph {
 		}
 		return min;
 	}
-	//�޸ĵ��յ��·����Ϣ
+	//修改到终点的路径信息
 	protected void amendPathInfo(Vertex mid, Vertex end){
 		Iterator it = getPath(mid).getPathInfo();
 		getPath(end).clearPathInfo();
@@ -181,28 +181,28 @@ public abstract class AbstractGraph implements Graph {
 		getPath(end).addPathInfo(mid.getInfo());
 	}
 
-	//ɾ��һ������v
+	//删除一个顶点v
 	public abstract void remove(Vertex v);
 
-	//ɾ��һ����e
+	//删除一条边e
 	public abstract void remove(Edge e);
 	
-	//���ش�uָ��v�ıߣ��������򷵻�null
+	//返回从u指向v的边，不存在则返回null
 	public abstract Edge edgeFromTo(Vertex u, Vertex v);
 	
-	//���ش�u��������ֱ�ӵ�����ڽӶ���
+	//返回从u出发可以直接到达的邻接顶点
 	public abstract Iterator adjVertexs(Vertex u);
 	
-	//������ͼ����С������,���������ͼ��֧�ִ˲���
+	//求无向图的最小生成树,如果是有向图不支持此操作
 	public abstract void generateMST() throws UnsupportedOperation;
 
-	//������ͼ����������,����ͼ��֧�ִ˲���
+	//求有向图的拓扑序列,无向图不支持此操作
 	public abstract Iterator toplogicalSort() throws UnsupportedOperation;
 
-	//�������޻�ͼ�Ĺؼ�·��,����ͼ��֧�ִ˲���
+	//求有向无环图的关键路径,无向图不支持此操作
 	public abstract void criticalPath() throws UnsupportedOperation;
 
-	//��������������ͼ�и������״̬��Ϣ
+	//辅助方法，重置图中各顶点的状态信息
 	protected void resetVexStatus(){
 		Iterator it = getVertex();
 		for(it.first(); !it.isDone(); it.next()){
@@ -210,7 +210,7 @@ public abstract class AbstractGraph implements Graph {
 			u.resetStatus();
 		}		
 	}
-	//����ͼ�и��ߵ�״̬��Ϣ
+	//重置图中各边的状态信息
 	protected void resetEdgeType(){
 		Iterator it = getEdge();
 		for(it.first(); !it.isDone(); it.next()){
@@ -218,7 +218,7 @@ public abstract class AbstractGraph implements Graph {
 			e.resetType();
 		}		
 	}
-	//�����·��ʱ����v.application�Ĳ���
+	//求最短路径时，对v.application的操作
 	protected int getDistance(Vertex v){ return ((Path)v.getAppObj()).getDistance();}
 	protected void setDistance(Vertex v, int dis){ ((Path)v.getAppObj()).setDistance(dis);}
 	protected Path getPath(Vertex v){ return (Path)v.getAppObj();}

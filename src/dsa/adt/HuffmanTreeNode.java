@@ -1,8 +1,8 @@
 package dsa.adt;
 
 public class HuffmanTreeNode extends BinTreeNode {
-	private int weight;			//Ȩֵ
-	private String coding = "";	//����
+	private int weight;			//权值
+	private String coding = "";	//编码
 	
 	public HuffmanTreeNode(int weight){
 		this(weight,null);
@@ -12,7 +12,7 @@ public class HuffmanTreeNode extends BinTreeNode {
 		this.weight = weight;
 	}
 	
-	//��д���෽��
+	//改写父类方法
 	public HuffmanTreeNode getParent() {
 		return (HuffmanTreeNode)super.getParent();
 	}
@@ -22,7 +22,7 @@ public class HuffmanTreeNode extends BinTreeNode {
 	public HuffmanTreeNode getRChild() {
 		return (HuffmanTreeNode)super.getRChild();
 	}
-	//get&set����
+	//get&set方法
 	public int getWeight(){ return weight;}
 	public String getCoding(){ return coding;}
 	public void setCoding(String coding){ this.coding = coding;}	

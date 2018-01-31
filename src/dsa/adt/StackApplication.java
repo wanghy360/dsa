@@ -59,47 +59,47 @@ public class StackApplication {
 	}
 	
 	public void mazeExit(char[][] maze,int sx,int sy, int ex,int ey){
-		Cell[][] cells = createMaze(maze);	//´´½¨»¯ÃÔ¹¬
-		printMaze(cells);					//´òÓ¡ÃÔ¹¬
-		Stack s = new StackSLinked();		//¹¹Ôì¶ÑÕ»
-		Cell startCell = cells[sx][sy];		//Æğµã
-		Cell endCell = cells[ex][ey];		//ÖÕµã
-		s.push(startCell);					//ÆğµãÈëÕ»
-		startCell.visited = true;			//±ê¼ÇÆğµãÒÑ±»·ÃÎÊ
+		Cell[][] cells = createMaze(maze);	//åˆ›å»ºåŒ–è¿·å®«
+		printMaze(cells);					//æ‰“å°è¿·å®«
+		Stack s = new StackSLinked();		//æ„é€ å †æ ˆ
+		Cell startCell = cells[sx][sy];		//èµ·ç‚¹
+		Cell endCell = cells[ex][ey];		//ç»ˆç‚¹
+		s.push(startCell);					//èµ·ç‚¹å…¥æ ˆ
+		startCell.visited = true;			//æ ‡è®°èµ·ç‚¹å·²è¢«è®¿é—®
 		while (!s.isEmpty()){
 			Cell current = (Cell)s.peek();
-			if (current==endCell){	//Â·¾¶ÕÒµ½
+			if (current==endCell){	//è·¯å¾„æ‰¾åˆ°
 				while(!s.isEmpty()){
-					Cell cell = (Cell)s.pop();//ÑØÂ··µ»Ø½«Â·¾¶ÉÏµÄµ¥ÔªÉèÎª*
+					Cell cell = (Cell)s.pop();//æ²¿è·¯è¿”å›å°†è·¯å¾„ä¸Šçš„å•å…ƒè®¾ä¸º*
 					cell.c = '*';
-					//¶ÑÕ»ÖĞÓëcellÏàÁÚµÄµ¥Ôª²ÅÊÇÂ·¾¶µÄ×é³É²¿·Ö
-					//³ı´ËÖ®Íâ£¬¶ÑÕ»ÖĞ»¹ÓĞ¼ÇÂ¼ÏÂÀ´µ«ÊÇÎ´¼ÌĞøÏòÏÂÌ½Ë÷µÄµ¥Ôª£¬ÕâĞ©µ¥ÔªÖ±½Ó³öÕ»
+					//å †æ ˆä¸­ä¸cellç›¸é‚»çš„å•å…ƒæ‰æ˜¯è·¯å¾„çš„ç»„æˆéƒ¨åˆ†
+					//é™¤æ­¤ä¹‹å¤–ï¼Œå †æ ˆä¸­è¿˜æœ‰è®°å½•ä¸‹æ¥ä½†æ˜¯æœªç»§ç»­å‘ä¸‹æ¢ç´¢çš„å•å…ƒï¼Œè¿™äº›å•å…ƒç›´æ¥å‡ºæ ˆ
 					while(!s.isEmpty()&&!isAdjacentCell((Cell)s.peek(),cell)) s.pop();
 				}
-				System.out.println("ÕÒµ½´ÓÆğµãµ½ÖÕµãµÄÂ·¾¶¡£");
+				System.out.println("æ‰¾åˆ°ä»èµ·ç‚¹åˆ°ç»ˆç‚¹çš„è·¯å¾„ã€‚");
 				printMaze(cells);
 				return;
 			}
-			else {	//Èç¹ûµ±Ç°Î»ÖÃ²»ÊÇÖÕµã
+			else {	//å¦‚æœå½“å‰ä½ç½®ä¸æ˜¯ç»ˆç‚¹
 				int x = current.x;
 				int y = current.y;
 				int count = 0;
-				if(isValidWayCell(cells[x+1][y])){	//ÏòÏÂ
+				if(isValidWayCell(cells[x+1][y])){	//å‘ä¸‹
 					s.push(cells[x+1][y]); cells[x+1][y].visited = true; count++;
 				}
-				if(isValidWayCell(cells[x][y+1])){	//ÏòÓÒ
+				if(isValidWayCell(cells[x][y+1])){	//å‘å³
 					s.push(cells[x][y+1]); cells[x][y+1].visited = true; count++;
 				}
-				if(isValidWayCell(cells[x-1][y])){	//ÏòÉÏ
+				if(isValidWayCell(cells[x-1][y])){	//å‘ä¸Š
 					s.push(cells[x-1][y]); cells[x-1][y].visited = true; count++;
 				}
-				if(isValidWayCell(cells[x][y-1])){	//Ïò×ó
+				if(isValidWayCell(cells[x][y-1])){	//å‘å·¦
 					s.push(cells[x][y-1]); cells[x][y-1].visited = true; count++;
 				}
-				if (count==0) s.pop();//Èç¹ûÊÇËÀµã£¬³öÕ»
+				if (count==0) s.pop();//å¦‚æœæ˜¯æ­»ç‚¹ï¼Œå‡ºæ ˆ
 			}
 		}
-		System.out.println("Ã»ÓĞ´ÓÆğµãµ½ÖÕµãµÄÂ·¾¶¡£");
+		System.out.println("æ²¡æœ‰ä»èµ·ç‚¹åˆ°ç»ˆç‚¹çš„è·¯å¾„ã€‚");
 	}
 	
 	private void printMaze(Cell[][] cells){
@@ -130,10 +130,10 @@ public class StackApplication {
 		return cells;
 	}
 	private class Cell{
-		int x = 0;	//µ¥ÔªËùÔÚĞĞ
-		int y = 0;	//µ¥ÔªËùÔÚÁĞ
-		boolean visited = false;	//ÊÇ·ñ·ÃÎÊ¹ı
-		char c = ' ';				//ÊÇÇ½¡¢¿ÉÍ¨Â·»òÆğµãµ½ÖÕµãµÄÂ·¾¶
+		int x = 0;	//å•å…ƒæ‰€åœ¨è¡Œ
+		int y = 0;	//å•å…ƒæ‰€åœ¨åˆ—
+		boolean visited = false;	//æ˜¯å¦è®¿é—®è¿‡
+		char c = ' ';				//æ˜¯å¢™ã€å¯é€šè·¯æˆ–èµ·ç‚¹åˆ°ç»ˆç‚¹çš„è·¯å¾„
 		public Cell(int x, int y, char c, boolean visited){
 			this.x = x;	this.y = y;	this.c = c;	this.visited = visited;
 		}

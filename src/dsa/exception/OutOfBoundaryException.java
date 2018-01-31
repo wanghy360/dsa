@@ -1,6 +1,6 @@
 package dsa.exception;
 
-//ÏßĞÔ±íÖĞ³öÏÖĞòºÅÔ½½çÊ±Å×³ö¸ÃÒì³£
+//çº¿æ€§è¡¨ä¸­å‡ºç°åºå·è¶Šç•Œæ—¶æŠ›å‡ºè¯¥å¼‚å¸¸
 public class OutOfBoundaryException extends RuntimeException{
 	
 	public OutOfBoundaryException(String err){

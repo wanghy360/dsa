@@ -3,18 +3,18 @@ package dsa.adt;
 import dsa.exception.StackEmptyException;
 
 public interface Stack {
-	//·µ»Ø¶ÑÕ»µÄ´óĞ¡
+	//è¿”å›å †æ ˆçš„å¤§å°
 	public int getSize();
 	
-	//ÅĞ¶Ï¶ÑÕ»ÊÇ·ñÎª¿Õ
+	//åˆ¤æ–­å †æ ˆæ˜¯å¦ä¸ºç©º
 	public boolean isEmpty();
 	
-	//Êı¾İÔªËØeÈëÕ»
+	//æ•°æ®å…ƒç´ eå…¥æ ˆ
 	public void push(Object e);
 	
-	//Õ»¶¥ÔªËØ³öÕ»
+	//æ ˆé¡¶å…ƒç´ å‡ºæ ˆ
 	public Object pop() throws StackEmptyException;
 	
-	//È¡Õ»¶¥ÔªËØ
+	//å–æ ˆé¡¶å…ƒç´ 
 	public Object peek() throws StackEmptyException;
 }

@@ -3,18 +3,18 @@ package dsa.adt;
 
 public class Edge {
 	public static final int NORMAL = 0;
-	public static final int MST = 1;	//MST±ß
-	public static final int CRITICAL = 2;//¹Ø¼üÂ·¾¶ÖĞµÄ±ß
-	private int weight;		//È¨Öµ
-	private Object info;	//±ßµÄĞÅÏ¢
-	private Node edgePosition;		//±ßÔÚ±ß±íÖĞµÄÎ»ÖÃ
-	private Node firstVexPosition;	//±ßµÄµÚÒ»¶¥µãÓëµÚ¶ş¶¥µã
-	private Node secondVexPosition;	//ÔÚ¶¥µã±íÖĞµÄÎ»ÖÃ
-	private Node edgeFirstPosition;	//±ßÔÚµÚÒ»£¨¶ş£©¶¥µãµÄÁÚ½Ó£¨ÄæÁÚ½Ó£©±ß±íÖĞµÄÎ»ÖÃ
-	private Node egdeSecondPosition;//ÔÚÎŞÏòÍ¼ÖĞ¾ÍÊÇÔÚÁ½¸ö¶¥µãµÄÁÚ½Ó±íÖĞµÄÎ»ÖÃ
-	private int type;		//±ßµÄÀàĞÍ
-	private int graphType;	//ËùÔÚÍ¼µÄÀàĞÍ
-	//¹¹Ôì·½·¨:ÔÚÍ¼GÖĞÒıÈëÒ»ÌõĞÂ±ß,Æä¶¥µãÎªu¡¢v
+	public static final int MST = 1;	//MSTè¾¹
+	public static final int CRITICAL = 2;//å…³é”®è·¯å¾„ä¸­çš„è¾¹
+	private int weight;		//æƒå€¼
+	private Object info;	//è¾¹çš„ä¿¡æ¯
+	private Node edgePosition;		//è¾¹åœ¨è¾¹è¡¨ä¸­çš„ä½ç½®
+	private Node firstVexPosition;	//è¾¹çš„ç¬¬ä¸€é¡¶ç‚¹ä¸ç¬¬äºŒé¡¶ç‚¹
+	private Node secondVexPosition;	//åœ¨é¡¶ç‚¹è¡¨ä¸­çš„ä½ç½®
+	private Node edgeFirstPosition;	//è¾¹åœ¨ç¬¬ä¸€ï¼ˆäºŒï¼‰é¡¶ç‚¹çš„é‚»æ¥ï¼ˆé€†é‚»æ¥ï¼‰è¾¹è¡¨ä¸­çš„ä½ç½®
+	private Node egdeSecondPosition;//åœ¨æ— å‘å›¾ä¸­å°±æ˜¯åœ¨ä¸¤ä¸ªé¡¶ç‚¹çš„é‚»æ¥è¡¨ä¸­çš„ä½ç½®
+	private int type;		//è¾¹çš„ç±»å‹
+	private int graphType;	//æ‰€åœ¨å›¾çš„ç±»å‹
+	//æ„é€ æ–¹æ³•:åœ¨å›¾Gä¸­å¼•å…¥ä¸€æ¡æ–°è¾¹,å…¶é¡¶ç‚¹ä¸ºuã€v
 	public Edge(Graph g, Vertex u, Vertex v, Object info){
 		this(g,u,v,info,1);
 	}
@@ -27,11 +27,11 @@ public class Edge {
 		type = Edge.NORMAL;
 		graphType = g.getType();
 		if (graphType==Graph.UndirectedGraph){
-			//Èç¹ûÊÇÎŞÏòÍ¼,±ßÓ¦µ±¼ÓÈëÆäÁ½¸ö¶¥µãµÄÁÚ½Ó±ß±í
+			//å¦‚æœæ˜¯æ— å‘å›¾,è¾¹åº”å½“åŠ å…¥å…¶ä¸¤ä¸ªé¡¶ç‚¹çš„é‚»æ¥è¾¹è¡¨
 			edgeFirstPosition = u.getAdjacentEdges().insertLast(this);
 			egdeSecondPosition = v.getAdjacentEdges().insertLast(this);
 		}else {
-			//Èç¹ûÊÇÓĞÏòÍ¼,±ß¼ÓÈëÆğÊ¼µãµÄÁÚ½Ó±ß±í,ÖÕÖ¹µãµÄÄæÁÚ½Ó±ß±í
+			//å¦‚æœæ˜¯æœ‰å‘å›¾,è¾¹åŠ å…¥èµ·å§‹ç‚¹çš„é‚»æ¥è¾¹è¡¨,ç»ˆæ­¢ç‚¹çš„é€†é‚»æ¥è¾¹è¡¨
 			edgeFirstPosition = u.getAdjacentEdges().insertLast(this);
 			egdeSecondPosition = v.getReAdjacentEdges().insertLast(this);
 		}
@@ -50,7 +50,7 @@ public class Edge {
 	public Node getEdgeSecondPosition(){ return egdeSecondPosition;}
 	public Node getEdgePosition(){ return edgePosition;}
 	
-	//Óë±ßµÄÀàĞÍÏà¹ØµÄ·½·¨
+	//ä¸è¾¹çš„ç±»å‹ç›¸å…³çš„æ–¹æ³•
 	public void setToMST(){ type = Edge.MST;}
 	public void setToCritical(){ type = Edge.CRITICAL;}
 	public void resetType(){ type = Edge.NORMAL;}

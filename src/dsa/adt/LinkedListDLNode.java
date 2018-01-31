@@ -4,86 +4,86 @@ import dsa.exception.InvalidNodeException;
 import dsa.exception.OutOfBoundaryException;
 
 /**
- * <strong>Ë«ÏòÁ´±í</strong>
- * <p>ÕâÀïµÄÎÊÌâÊÇ£¬×÷ÕßÇ¿µ÷Ö»±©Â¶{@code Node}¸øÍâ½ç£¬ÓÉÓÚ{@code Node}Ã»ÓĞÌá¹©{@code setPre}ºÍ{@code setNext}·½·¨£¬ÎŞ·¨ĞŞ¸ÄÄÚ²¿Á´±í½á¹¹£¬ËùÒÔÊÇ°²È«µÄ¡£<br/>
- * µ«Êµ¼ÊÉÏ£¬Ö»Òª½«{@code Node}Ç¿×ªÎª{@code DLNode},¾Í¿ÉÒÔĞŞ¸Ä½ÚµãµÄÇ°ÇıºÍºóÇı£¬ËùÒÔÕâ¸öÊµÏÖÔÚ±¾ÖÊÉÏÒÀÈ»ÊÇ²»°²È«µÄ¡£<br/>
- * Èç¹ûÏëÒª°²È«µØ·â×°ÄÚ²¿ÊµÏÖ£¬×îºÃ²»ºÃ±©Â¶{@code Node}£¬Ö»±©Â¶½áµãÊı¾İÓò¡£<br/>
- * ²ÎÕÕJava¹Ù·½ÊµÏÖ{@link java.util.LinkedList}£¬NodeÊÇË½ÓĞ¾²Ì¬ÄÚ²¿Àà£¬²»¶ÔÍâ¿ª·Å¡£</p>
+ * <strong>åŒå‘é“¾è¡¨</strong>
+ * <p>è¿™é‡Œçš„é—®é¢˜æ˜¯ï¼Œä½œè€…å¼ºè°ƒåªæš´éœ²{@code Node}ç»™å¤–ç•Œï¼Œç”±äº{@code Node}æ²¡æœ‰æä¾›{@code setPre}å’Œ{@code setNext}æ–¹æ³•ï¼Œæ— æ³•ä¿®æ”¹å†…éƒ¨é“¾è¡¨ç»“æ„ï¼Œæ‰€ä»¥æ˜¯å®‰å…¨çš„ã€‚<br/>
+ * ä½†å®é™…ä¸Šï¼Œåªè¦å°†{@code Node}å¼ºè½¬ä¸º{@code DLNode},å°±å¯ä»¥ä¿®æ”¹èŠ‚ç‚¹çš„å‰é©±å’Œåé©±ï¼Œæ‰€ä»¥è¿™ä¸ªå®ç°åœ¨æœ¬è´¨ä¸Šä¾ç„¶æ˜¯ä¸å®‰å…¨çš„ã€‚<br/>
+ * å¦‚æœæƒ³è¦å®‰å…¨åœ°å°è£…å†…éƒ¨å®ç°ï¼Œæœ€å¥½ä¸å¥½æš´éœ²{@code Node}ï¼Œåªæš´éœ²ç»“ç‚¹æ•°æ®åŸŸã€‚<br/>
+ * å‚ç…§Javaå®˜æ–¹å®ç°{@link java.util.LinkedList}ï¼ŒNodeæ˜¯ç§æœ‰é™æ€å†…éƒ¨ç±»ï¼Œä¸å¯¹å¤–å¼€æ”¾ã€‚</p>
  */
 public class LinkedListDLNode implements LinkedList {
-    private int size;    //¹æÄ£
-    private DLNode head;//Í·½áµã,ÑÆÔª½áµã
-    private DLNode tail;//Î²½áµã,ÑÆÔª½áµã
+    private int size;    //è§„æ¨¡
+    private DLNode head;//å¤´ç»“ç‚¹,å“‘å…ƒç»“ç‚¹
+    private DLNode tail;//å°¾ç»“ç‚¹,å“‘å…ƒç»“ç‚¹
 
     public LinkedListDLNode() {
         size = 0;
-        head = new DLNode();//¹¹½¨Ö»ÓĞÍ·Î²½áµãµÄÁ´±í
+        head = new DLNode();//æ„å»ºåªæœ‰å¤´å°¾ç»“ç‚¹çš„é“¾è¡¨
         tail = new DLNode();
         head.setNext(tail);
         tail.setPre(head);
     }
 
-    //¸¨Öú·½·¨£¬ÅĞ¶Ï½áµãpÊÇ·ñºÏ·¨£¬ÈçºÏ·¨×ª»»ÎªDLNode
+    //è¾…åŠ©æ–¹æ³•ï¼Œåˆ¤æ–­ç»“ç‚¹pæ˜¯å¦åˆæ³•ï¼Œå¦‚åˆæ³•è½¬æ¢ä¸ºDLNode
     private DLNode checkPosition(Node p) throws InvalidNodeException {
         if (p == null)
-            throw new InvalidNodeException("´íÎó£ºpÎª¿Õ¡£");
+            throw new InvalidNodeException("é”™è¯¯ï¼špä¸ºç©ºã€‚");
         if (p == head)
-            throw new InvalidNodeException("´íÎó£ºpÖ¸ÏòÍ·½Úµã£¬·Ç·¨¡£");
+            throw new InvalidNodeException("é”™è¯¯ï¼špæŒ‡å‘å¤´èŠ‚ç‚¹ï¼Œéæ³•ã€‚");
         if (p == tail)
-            throw new InvalidNodeException("´íÎó£ºpÖ¸ÏòÎ²½áµã£¬·Ç·¨¡£");
+            throw new InvalidNodeException("é”™è¯¯ï¼špæŒ‡å‘å°¾ç»“ç‚¹ï¼Œéæ³•ã€‚");
         DLNode node = (DLNode) p;
         return node;
     }
 
-    //²éÑ¯Á´½Ó±íµ±Ç°µÄ¹æÄ£
+    //æŸ¥è¯¢é“¾æ¥è¡¨å½“å‰çš„è§„æ¨¡
     @Override
     public int getSize() {
         return size;
     }
 
-    //ÅĞ¶ÏÁ´½Ó±íÊÇ·ñÎª¿Õ
+    //åˆ¤æ–­é“¾æ¥è¡¨æ˜¯å¦ä¸ºç©º
     @Override
     public boolean isEmpty() {
         return size == 0;
     }
 
-    //·µ»ØµÚÒ»¸ö½áµã
+    //è¿”å›ç¬¬ä¸€ä¸ªç»“ç‚¹
     @Override
     public Node first() throws OutOfBoundaryException {
         if (isEmpty())
-            throw new OutOfBoundaryException("´íÎó£ºÁ´½Ó±íÎª¿Õ¡£");
+            throw new OutOfBoundaryException("é”™è¯¯ï¼šé“¾æ¥è¡¨ä¸ºç©ºã€‚");
         return head.getNext();
     }
 
-    //·µ»Ø×îºóÒ»½áµã
+    //è¿”å›æœ€åä¸€ç»“ç‚¹
     @Override
     public Node last() throws OutOfBoundaryException {
         if (isEmpty())
-            throw new OutOfBoundaryException("´íÎó£ºÁ´½Ó±íÎª¿Õ¡£");
+            throw new OutOfBoundaryException("é”™è¯¯ï¼šé“¾æ¥è¡¨ä¸ºç©ºã€‚");
         return tail.getPre();
     }
 
-    //·µ»ØpÖ®ºóµÄ½áµã
+    //è¿”å›pä¹‹åçš„ç»“ç‚¹
     @Override
     public Node getNext(Node p) throws InvalidNodeException, OutOfBoundaryException {
         DLNode node = checkPosition(p);
         node = node.getNext();
         if (node == tail)
-            throw new OutOfBoundaryException("´íÎó£ºÒÑ¾­ÊÇÁ´½Ó±íÎ²¶Ë¡£");
+            throw new OutOfBoundaryException("é”™è¯¯ï¼šå·²ç»æ˜¯é“¾æ¥è¡¨å°¾ç«¯ã€‚");
         return node;
     }
 
-    //·µ»ØpÖ®Ç°µÄ½áµã
+    //è¿”å›pä¹‹å‰çš„ç»“ç‚¹
     @Override
     public Node getPre(Node p) throws InvalidNodeException, OutOfBoundaryException {
         DLNode node = checkPosition(p);
         node = node.getPre();
         if (node == head)
-            throw new OutOfBoundaryException("´íÎó£ºÒÑ¾­ÊÇÁ´½Ó±íÇ°¶Ë¡£");
+            throw new OutOfBoundaryException("é”™è¯¯ï¼šå·²ç»æ˜¯é“¾æ¥è¡¨å‰ç«¯ã€‚");
         return node;
     }
 
-    //½«e×÷ÎªµÚÒ»¸öÔªËØ²åÈëÁ´½Ó±í
+    //å°†eä½œä¸ºç¬¬ä¸€ä¸ªå…ƒç´ æ’å…¥é“¾æ¥è¡¨
     @Override
     public Node insertFirst(Object e) {
         DLNode node = new DLNode(e, head, head.getNext());
@@ -93,7 +93,7 @@ public class LinkedListDLNode implements LinkedList {
         return node;
     }
 
-    //½«e×÷Îª×îºóÒ»¸öÔªËØ²åÈëÁĞ±í,²¢·µ»ØeËùÔÚ½áµã
+    //å°†eä½œä¸ºæœ€åä¸€ä¸ªå…ƒç´ æ’å…¥åˆ—è¡¨,å¹¶è¿”å›eæ‰€åœ¨ç»“ç‚¹
     @Override
     public Node insertLast(Object e) {
         DLNode node = new DLNode(e, tail.getPre(), tail);
@@ -103,7 +103,7 @@ public class LinkedListDLNode implements LinkedList {
         return node;
     }
 
-    //½«e²åÈëÖÁpÖ®ºóµÄÎ»ÖÃ,²¢·µ»ØeËùÔÚ½áµã
+    //å°†eæ’å…¥è‡³pä¹‹åçš„ä½ç½®,å¹¶è¿”å›eæ‰€åœ¨ç»“ç‚¹
     @Override
     public Node insertAfter(Node p, Object e) throws InvalidNodeException {
         DLNode node = checkPosition(p);
@@ -114,7 +114,7 @@ public class LinkedListDLNode implements LinkedList {
         return newNode;
     }
 
-    //½«e²åÈëÖÁpÖ®Ç°µÄÎ»ÖÃ,²¢·µ»ØeËùÔÚ½áµã
+    //å°†eæ’å…¥è‡³pä¹‹å‰çš„ä½ç½®,å¹¶è¿”å›eæ‰€åœ¨ç»“ç‚¹
     @Override
     public Node insertBefore(Node p, Object e) throws InvalidNodeException {
         DLNode node = checkPosition(p);
@@ -125,7 +125,7 @@ public class LinkedListDLNode implements LinkedList {
         return newNode;
     }
 
-    //É¾³ı¸ø¶¨Î»ÖÃ´¦µÄÔªËØ£¬²¢·µ»ØÖ®
+    //åˆ é™¤ç»™å®šä½ç½®å¤„çš„å…ƒç´ ï¼Œå¹¶è¿”å›ä¹‹
     @Override
     public Object remove(Node p) throws InvalidNodeException {
         DLNode node = checkPosition(p);
@@ -136,19 +136,19 @@ public class LinkedListDLNode implements LinkedList {
         return obj;
     }
 
-    //É¾³ıÊ×ÔªËØ£¬²¢·µ»ØÖ®
+    //åˆ é™¤é¦–å…ƒç´ ï¼Œå¹¶è¿”å›ä¹‹
     @Override
     public Object removeFirst() throws OutOfBoundaryException {
         return remove(head.getNext());
     }
 
-    //É¾³ıÄ©ÔªËØ£¬²¢·µ»ØÖ®
+    //åˆ é™¤æœ«å…ƒç´ ï¼Œå¹¶è¿”å›ä¹‹
     @Override
     public Object removeLast() throws OutOfBoundaryException {
         return remove(tail.getPre());
     }
 
-    //½«´¦ÓÚ¸ø¶¨Î»ÖÃµÄÔªËØÌæ»»ÎªĞÂÔªËØ£¬²¢·µ»Ø±»Ìæ»»µÄÔªËØ
+    //å°†å¤„äºç»™å®šä½ç½®çš„å…ƒç´ æ›¿æ¢ä¸ºæ–°å…ƒç´ ï¼Œå¹¶è¿”å›è¢«æ›¿æ¢çš„å…ƒç´ 
     @Override
     public Object replace(Node p, Object e) throws InvalidNodeException {
         DLNode node = checkPosition(p);
@@ -157,7 +157,7 @@ public class LinkedListDLNode implements LinkedList {
         return obj;
     }
 
-    //ÔªËØµü´úÆ÷
+    //å…ƒç´ è¿­ä»£å™¨
     @Override
     public Iterator elements() {
         return new LinkedListIterator(this);

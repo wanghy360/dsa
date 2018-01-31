@@ -4,48 +4,48 @@ import dsa.exception.InvalidNodeException;
 import dsa.exception.OutOfBoundaryException;
 
 public interface LinkedList {
-    //²éÑ¯Á´½Ó±íµ±Ç°µÄ¹æÄ£
+    //æŸ¥è¯¢é“¾æ¥è¡¨å½“å‰çš„è§„æ¨¡
     int getSize();
 
-    //ÅĞ¶ÏÁ´½Ó±íÊÇ·ñÎª¿Õ
+    //åˆ¤æ–­é“¾æ¥è¡¨æ˜¯å¦ä¸ºç©º
     boolean isEmpty();
 
-    //·µ»ØµÚÒ»¸ö½áµã
+    //è¿”å›ç¬¬ä¸€ä¸ªç»“ç‚¹
     Node first() throws OutOfBoundaryException;
 
-    //·µ»Ø×îºóÒ»½áµã
+    //è¿”å›æœ€åä¸€ç»“ç‚¹
     Node last() throws OutOfBoundaryException;
 
-    //·µ»ØpÖ®ºóµÄ½áµã
+    //è¿”å›pä¹‹åçš„ç»“ç‚¹
     Node getNext(Node p) throws InvalidNodeException, OutOfBoundaryException;
 
-    //·µ»ØpÖ®Ç°µÄ½áµã
+    //è¿”å›pä¹‹å‰çš„ç»“ç‚¹
     Node getPre(Node p) throws InvalidNodeException, OutOfBoundaryException;
 
-    //½«e×÷ÎªµÚÒ»¸öÔªËØ²åÈëÁ´½Ó±í,²¢·µ»ØeËùÔÚ½áµã
+    //å°†eä½œä¸ºç¬¬ä¸€ä¸ªå…ƒç´ æ’å…¥é“¾æ¥è¡¨,å¹¶è¿”å›eæ‰€åœ¨ç»“ç‚¹
     Node insertFirst(Object e);
 
-    //½«e×÷Îª×îºóÒ»¸öÔªËØ²åÈëÁĞ±í,²¢·µ»ØeËùÔÚ½áµã
+    //å°†eä½œä¸ºæœ€åä¸€ä¸ªå…ƒç´ æ’å…¥åˆ—è¡¨,å¹¶è¿”å›eæ‰€åœ¨ç»“ç‚¹
     Node insertLast(Object e);
 
-    //½«e²åÈëÖÁpÖ®ºóµÄÎ»ÖÃ,²¢·µ»ØeËùÔÚ½áµã
+    //å°†eæ’å…¥è‡³pä¹‹åçš„ä½ç½®,å¹¶è¿”å›eæ‰€åœ¨ç»“ç‚¹
     Node insertAfter(Node p, Object e) throws InvalidNodeException;
 
-    //½«e²åÈëÖÁpÖ®Ç°µÄÎ»ÖÃ,²¢·µ»ØeËùÔÚ½áµã
+    //å°†eæ’å…¥è‡³pä¹‹å‰çš„ä½ç½®,å¹¶è¿”å›eæ‰€åœ¨ç»“ç‚¹
     Node insertBefore(Node p, Object e) throws InvalidNodeException;
 
-    //É¾³ı¸ø¶¨Î»ÖÃ´¦µÄÔªËØ£¬²¢·µ»ØÖ®
+    //åˆ é™¤ç»™å®šä½ç½®å¤„çš„å…ƒç´ ï¼Œå¹¶è¿”å›ä¹‹
     Object remove(Node p) throws InvalidNodeException;
 
-    //É¾³ıÊ×ÔªËØ£¬²¢·µ»ØÖ®
+    //åˆ é™¤é¦–å…ƒç´ ï¼Œå¹¶è¿”å›ä¹‹
     Object removeFirst() throws OutOfBoundaryException;
 
-    //É¾³ıÄ©ÔªËØ£¬²¢·µ»ØÖ®
+    //åˆ é™¤æœ«å…ƒç´ ï¼Œå¹¶è¿”å›ä¹‹
     Object removeLast() throws OutOfBoundaryException;
 
-    //½«´¦ÓÚ¸ø¶¨Î»ÖÃµÄÔªËØÌæ»»ÎªĞÂÔªËØ£¬²¢·µ»Ø±»Ìæ»»µÄÔªËØ
+    //å°†å¤„äºç»™å®šä½ç½®çš„å…ƒç´ æ›¿æ¢ä¸ºæ–°å…ƒç´ ï¼Œå¹¶è¿”å›è¢«æ›¿æ¢çš„å…ƒç´ 
     Object replace(Node p, Object e) throws InvalidNodeException;
 
-    //ÔªËØµü´úÆ÷
+    //å…ƒç´ è¿­ä»£å™¨
     Iterator elements();
 }

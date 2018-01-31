@@ -25,75 +25,75 @@ public class AVLTree extends BSTree {
 	}
 	
 	private BinTreeNode rotate(BinTreeNode z){
-		BinTreeNode y = higherSubT(z);		//È¡yÎªz¸ü¸ßµÄº¢×Ó
-		BinTreeNode x = higherSubT(y);		//È¡xÎªy¸ü¸ßµÄº¢×Ó
-		boolean isLeft = z.isLChild();		//¼ÇÂ¼£ºzÊÇ·ñ×óº¢×Ó
-		BinTreeNode p = z.getParent();		//pÎªzµÄ¸¸Ç×
-		BinTreeNode a, b, c;				//×Ô×óÏòÓÒ£¬Èı¸ö½Úµã
-		BinTreeNode t0, t1, t2, t3;			//×Ô×óÏòÓÒ£¬ËÄ¿Ã×ÓÊ÷
-		// ÒÔÏÂ·ÖËÄÖÖÇé¿ö
-		if (y.isLChild()) {					//ÈôyÊÇ×óº¢×Ó£¬Ôò
+		BinTreeNode y = higherSubT(z);		//å–yä¸ºzæ›´é«˜çš„å­©å­
+		BinTreeNode x = higherSubT(y);		//å–xä¸ºyæ›´é«˜çš„å­©å­
+		boolean isLeft = z.isLChild();		//è®°å½•ï¼šzæ˜¯å¦å·¦å­©å­
+		BinTreeNode p = z.getParent();		//pä¸ºzçš„çˆ¶äº²
+		BinTreeNode a, b, c;				//è‡ªå·¦å‘å³ï¼Œä¸‰ä¸ªèŠ‚ç‚¹
+		BinTreeNode t0, t1, t2, t3;			//è‡ªå·¦å‘å³ï¼Œå››æ£µå­æ ‘
+		// ä»¥ä¸‹åˆ†å››ç§æƒ…å†µ
+		if (y.isLChild()) {					//è‹¥yæ˜¯å·¦å­©å­ï¼Œåˆ™
 			c = z;	t3 = z.getRChild();
-			if (x.isLChild()) {				//ÈôxÊÇ×óº¢×Ó(×ó×óÊ§ºâ)
+			if (x.isLChild()) {				//è‹¥xæ˜¯å·¦å­©å­(å·¦å·¦å¤±è¡¡)
 				b = y;	t2 = y.getRChild();
 				a = x;	t1 = x.getRChild();	t0 = x.getLChild();
-			} else {						//ÈôxÊÇÓÒº¢×Ó(×óÓÒÊ§ºâ)
+			} else {						//è‹¥xæ˜¯å³å­©å­(å·¦å³å¤±è¡¡)
 				a = y;	t0 = y.getLChild();
 				b = x;	t1 = x.getLChild();	t2 = x.getRChild();
 			}
-		} else {							//ÈôyÊÇÓÒº¢×Ó£¬Ôò
+		} else {							//è‹¥yæ˜¯å³å­©å­ï¼Œåˆ™
 			a = z;	t0 = z.getLChild();
-			if (x.isRChild()) {				//ÈôxÊÇÓÒº¢×Ó(ÓÒÓÒÊ§ºâ)
+			if (x.isRChild()) {				//è‹¥xæ˜¯å³å­©å­(å³å³å¤±è¡¡)
 				b = y;	t1 = y.getLChild();
 				c = x;	t2 = x.getLChild();	t3 = x.getRChild();
-			} else {						//ÈôxÊÇ×óº¢×Ó(ÓÒ×óÊ§ºâ)
+			} else {						//è‹¥xæ˜¯å·¦å­©å­(å³å·¦å¤±è¡¡)
 				c = y;	t3 = y.getRChild();
 				b = x;	t1 = x.getLChild();	t2 = x.getRChild();
 			}
 		}
 
-		//ÕªÏÂÈı¸ö½Úµã
+		//æ‘˜ä¸‹ä¸‰ä¸ªèŠ‚ç‚¹
 		z.sever();
 		y.sever();
 		x.sever();
 
-		//ÕªÏÂËÄ¿Ã×ÓÊ÷
+		//æ‘˜ä¸‹å››æ£µå­æ ‘
 		if (t0!=null) t0.sever();
 		if (t1!=null) t1.sever();
 		if (t2!=null) t2.sever();
 		if (t3!=null) t3.sever();
 
-		//ÖØĞÂÁ´½Ó
+		//é‡æ–°é“¾æ¥
 		a.setLChild(t0);	a.setRChild(t1);
 		c.setLChild(t2);	c.setRChild(t3);
 		b.setLChild(a);		b.setRChild(c);
 
-		//×ÓÊ÷ÖØĞÂ½ÓÈëÔ­Ê÷
+		//å­æ ‘é‡æ–°æ¥å…¥åŸæ ‘
 		if (p!=null)
 			if (isLeft)	p.setLChild(b);
 			else		p.setRChild(b);
 
-		return b;//·µ»ØĞÂµÄ×ÓÊ÷¸ù
+		return b;//è¿”å›æ–°çš„å­æ ‘æ ¹
 	}
 	
 	private BinTreeNode reBalance(BinTreeNode v){
 		if (v==null)	return root;
 		BinTreeNode c = v;
-		while (v!=null) {						//´Óv¿ªÊ¼£¬ÏòÉÏÖğÒ»¼ì²ézµÄ×æÏÈ
-			if (!isBalance(v))	v = rotate(v);	//ÈôvÊ§ºâ£¬ÔòĞı×ªÊ¹Ö®ÖØĞÂÆ½ºâ
+		while (v!=null) {						//ä»vå¼€å§‹ï¼Œå‘ä¸Šé€ä¸€æ£€æŸ¥zçš„ç¥–å…ˆ
+			if (!isBalance(v))	v = rotate(v);	//è‹¥vå¤±è¡¡ï¼Œåˆ™æ—‹è½¬ä½¿ä¹‹é‡æ–°å¹³è¡¡
 			c = v;
-			v = v.getParent();					//¼ÌĞø¼ì²éÆä¸¸Ç×
+			v = v.getParent();					//ç»§ç»­æ£€æŸ¥å…¶çˆ¶äº²
 		}//while
 		return c;
 	}
 	
-	//°´¹Ø¼ü×Ö²åÈëÔªËØele
+	//æŒ‰å…³é”®å­—æ’å…¥å…ƒç´ ele
 	public void insert(Object ele){
 		super.insert(ele);
 		root = reBalance(startBN);
 	}
 	
-	//Èô²éÕÒ±íÖĞ´æÔÚÓëÔªËØele¹Ø¼ü×ÖÏàÍ¬ÔªËØ£¬ÔòÉ¾³ıÒ»¸ö²¢·µ»Ø£»·ñÔò£¬·µ»Ønull
+	//è‹¥æŸ¥æ‰¾è¡¨ä¸­å­˜åœ¨ä¸å…ƒç´ eleå…³é”®å­—ç›¸åŒå…ƒç´ ï¼Œåˆ™åˆ é™¤ä¸€ä¸ªå¹¶è¿”å›ï¼›å¦åˆ™ï¼Œè¿”å›null
 	public Object remove(Object ele){
 		Object obj = super.remove(ele);
 		root = reBalance(startBN);

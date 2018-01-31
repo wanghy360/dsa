@@ -2,9 +2,9 @@ package dsa.adt;
 
 
 public interface Node {
-    //»ñÈ¡½áµãÊı¾İÓò
+    //è·å–ç»“ç‚¹æ•°æ®åŸŸ
     Object getData();
 
-    //ÉèÖÃ½áµãÊı¾İÓò
+    //è®¾ç½®ç»“ç‚¹æ•°æ®åŸŸ
     void setData(Object obj);
 }

@@ -3,43 +3,43 @@ package dsa.adt;
 import dsa.exception.UnsupportedOperation;
 
 public interface Graph {
-	public static final int UndirectedGraph = 0;//ÎŞÏòÍ¼
-	public static final int DirectedGraph   = 1;//ÓĞÏòÍ¼
+	public static final int UndirectedGraph = 0;//æ— å‘å›¾
+	public static final int DirectedGraph   = 1;//æœ‰å‘å›¾
 	
-	//·µ»ØÍ¼µÄÀàĞÍ
+	//è¿”å›å›¾çš„ç±»å‹
 	public int getType();
-	//·µ»ØÍ¼µÄ¶¥µãÊı
+	//è¿”å›å›¾çš„é¡¶ç‚¹æ•°
 	public int getVexNum();
-	//·µ»ØÍ¼µÄ±ßÊı
+	//è¿”å›å›¾çš„è¾¹æ•°
 	public int getEdgeNum();
-	//·µ»ØÍ¼µÄËùÓĞ¶¥µã
+	//è¿”å›å›¾çš„æ‰€æœ‰é¡¶ç‚¹
 	public Iterator getVertex();
-	//·µ»ØÍ¼µÄËùÓĞ±ß
+	//è¿”å›å›¾çš„æ‰€æœ‰è¾¹
 	public Iterator getEdge();
-	//É¾³ıÒ»¸ö¶¥µãv
+	//åˆ é™¤ä¸€ä¸ªé¡¶ç‚¹v
 	public void remove(Vertex v);
-	//É¾³ıÒ»Ìõ±ße
+	//åˆ é™¤ä¸€æ¡è¾¹e
 	public void remove(Edge e);
-	//Ìí¼ÓÒ»¸ö¶¥µãv
+	//æ·»åŠ ä¸€ä¸ªé¡¶ç‚¹v
 	public Node insert(Vertex v);
-	//Ìí¼ÓÒ»Ìõ±ße
+	//æ·»åŠ ä¸€æ¡è¾¹e
 	public Node insert(Edge e);
-	//ÅĞ¶Ï¶¥µãu¡¢vÊÇ·ñÁÚ½Ó£¬¼´ÊÇ·ñÓĞ±ß´Óuµ½v
+	//åˆ¤æ–­é¡¶ç‚¹uã€væ˜¯å¦é‚»æ¥ï¼Œå³æ˜¯å¦æœ‰è¾¹ä»uåˆ°v
 	public boolean areAdjacent(Vertex u, Vertex v);
-	//·µ»Ø´ÓuÖ¸ÏòvµÄ±ß£¬²»´æÔÚÔò·µ»Ønull
+	//è¿”å›ä»uæŒ‡å‘vçš„è¾¹ï¼Œä¸å­˜åœ¨åˆ™è¿”å›null
 	public Edge edgeFromTo(Vertex u, Vertex v);
-	//·µ»Ø´Óu³ö·¢¿ÉÒÔÖ±½Óµ½´ïµÄÁÚ½Ó¶¥µã
+	//è¿”å›ä»uå‡ºå‘å¯ä»¥ç›´æ¥åˆ°è¾¾çš„é‚»æ¥é¡¶ç‚¹
 	public Iterator adjVertexs(Vertex u);
-	//¶ÔÍ¼½øĞĞÉî¶ÈÓÅÏÈ±éÀú
+	//å¯¹å›¾è¿›è¡Œæ·±åº¦ä¼˜å…ˆéå†
 	public Iterator DFSTraverse(Vertex v);
-	//¶ÔÍ¼½øĞĞ¹ã¶ÈÓÅÏÈ±éÀú
+	//å¯¹å›¾è¿›è¡Œå¹¿åº¦ä¼˜å…ˆéå†
 	public Iterator BFSTraverse(Vertex v);
-	//Çó¶¥µãvµ½ÆäËû¶¥µãµÄ×î¶ÌÂ·¾¶
+	//æ±‚é¡¶ç‚¹våˆ°å…¶ä»–é¡¶ç‚¹çš„æœ€çŸ­è·¯å¾„
 	public Iterator shortestPath(Vertex v);
-	//ÇóÎŞÏòÍ¼µÄ×îĞ¡Éú³ÉÊ÷,Èç¹ûÊÇÓĞÏòÍ¼²»Ö§³Ö´Ë²Ù×÷
+	//æ±‚æ— å‘å›¾çš„æœ€å°ç”Ÿæˆæ ‘,å¦‚æœæ˜¯æœ‰å‘å›¾ä¸æ”¯æŒæ­¤æ“ä½œ
 	public void generateMST() throws UnsupportedOperation;
-	//ÇóÓĞÏòÍ¼µÄÍØÆËĞòÁĞ,ÎŞÏòÍ¼²»Ö§³Ö´Ë²Ù×÷
+	//æ±‚æœ‰å‘å›¾çš„æ‹“æ‰‘åºåˆ—,æ— å‘å›¾ä¸æ”¯æŒæ­¤æ“ä½œ
 	public Iterator toplogicalSort() throws UnsupportedOperation;
-	//ÇóÓĞÏòÎŞ»·Í¼µÄ¹Ø¼üÂ·¾¶,ÎŞÏòÍ¼²»Ö§³Ö´Ë²Ù×÷
+	//æ±‚æœ‰å‘æ— ç¯å›¾çš„å…³é”®è·¯å¾„,æ— å‘å›¾ä¸æ”¯æŒæ­¤æ“ä½œ
 	public void criticalPath() throws UnsupportedOperation;
 }

@@ -5,12 +5,12 @@ import dsa.strategy.DefaultStrategy;
 import dsa.strategy.Strategy;
 
 /**
- * µ¥Á´±í
+ * å•é“¾è¡¨
  */
 public class ListSLinked implements List {
-    private Strategy strategy;    //Êı¾İÔªËØ±È½Ï²ßÂÔ
-    private SLNode head;        //µ¥Á´±íÊ×½áµãÒıÓÃ
-    private int size;            //ÏßĞÔ±íÖĞÊı¾İÔªËØµÄ¸öÊı
+    private Strategy strategy;    //æ•°æ®å…ƒç´ æ¯”è¾ƒç­–ç•¥
+    private SLNode head;        //å•é“¾è¡¨é¦–ç»“ç‚¹å¼•ç”¨
+    private int size;            //çº¿æ€§è¡¨ä¸­æ•°æ®å…ƒç´ çš„ä¸ªæ•°
 
     public ListSLinked() {
         this(new DefaultStrategy());
@@ -22,8 +22,8 @@ public class ListSLinked implements List {
         size = 0;
     }
 
-    //¸¨Öú·½·¨
-    //»ñÈ¡Êı¾İÔªËØeËùÔÚ½áµãµÄÇ°Çı½áµã
+    //è¾…åŠ©æ–¹æ³•
+    //è·å–æ•°æ®å…ƒç´ eæ‰€åœ¨ç»“ç‚¹çš„å‰é©±ç»“ç‚¹
     private SLNode getPreNode(Object e) {
         SLNode p = head;
         while (p.getNext() != null)
@@ -32,14 +32,14 @@ public class ListSLinked implements List {
         return null;
     }
 
-    //»ñÈ¡ĞòºÅÎª0<=i<sizeµÄÔªËØËùÔÚ½áµãµÄÇ°Çı½áµã
+    //è·å–åºå·ä¸º0<=i<sizeçš„å…ƒç´ æ‰€åœ¨ç»“ç‚¹çš„å‰é©±ç»“ç‚¹
     private SLNode getPreNode(int i) {
         SLNode p = head;
         for (; i > 0; i--) p = p.getNext();
         return p;
     }
 
-    //»ñÈ¡ĞòºÅÎª0<=i<sizeµÄÔªËØËùÔÚ½áµã
+    //è·å–åºå·ä¸º0<=i<sizeçš„å…ƒç´ æ‰€åœ¨ç»“ç‚¹
     private SLNode getNode(int i) {
         SLNode p = head.getNext();
         for (; i > 0; i--) p = p.getNext();
@@ -47,7 +47,7 @@ public class ListSLinked implements List {
     }
 
     /**
-     * ½«ÔªËØ²åÈëµ½Á´±íµÄµÚ0ºÅ½Úµã
+     * å°†å…ƒç´ æ’å…¥åˆ°é“¾è¡¨çš„ç¬¬0å·èŠ‚ç‚¹
      */
     public void insertFirst(Object e) {
         SLNode p = head;
@@ -56,19 +56,19 @@ public class ListSLinked implements List {
         size++;
     }
 
-    //·µ»ØÏßĞÔ±íµÄ´óĞ¡£¬¼´Êı¾İÔªËØµÄ¸öÊı¡£
+    //è¿”å›çº¿æ€§è¡¨çš„å¤§å°ï¼Œå³æ•°æ®å…ƒç´ çš„ä¸ªæ•°ã€‚
     @Override
     public int getSize() {
         return size;
     }
 
-    //Èç¹ûÏßĞÔ±íÎª¿Õ·µ»Øtrue£¬·ñÔò·µ»Øfalse¡£
+    //å¦‚æœçº¿æ€§è¡¨ä¸ºç©ºè¿”å›trueï¼Œå¦åˆ™è¿”å›falseã€‚
     @Override
     public boolean isEmpty() {
         return size == 0;
     }
 
-    //ÅĞ¶ÏÏßĞÔ±íÊÇ·ñ°üº¬Êı¾İÔªËØe
+    //åˆ¤æ–­çº¿æ€§è¡¨æ˜¯å¦åŒ…å«æ•°æ®å…ƒç´ e
     @Override
     public boolean contains(Object e) {
         SLNode p = head.getNext();
@@ -78,7 +78,7 @@ public class ListSLinked implements List {
         return false;
     }
 
-    //·µ»ØÊı¾İÔªËØeÔÚÏßĞÔ±íÖĞµÄĞòºÅ
+    //è¿”å›æ•°æ®å…ƒç´ eåœ¨çº¿æ€§è¡¨ä¸­çš„åºå·
     @Override
     public int indexOf(Object e) {
         SLNode p = head.getNext();
@@ -92,18 +92,18 @@ public class ListSLinked implements List {
         return -1;
     }
 
-    //½«Êı¾İÔªËØe²åÈëµ½ÏßĞÔ±íÖĞiºÅÎ»ÖÃ
+    //å°†æ•°æ®å…ƒç´ eæ’å…¥åˆ°çº¿æ€§è¡¨ä¸­iå·ä½ç½®
     @Override
     public void insert(int i, Object e) throws OutOfBoundaryException {
         if (i < 0 || i > size)
-            throw new OutOfBoundaryException("´íÎó£¬Ö¸¶¨µÄ²åÈëĞòºÅÔ½½ç¡£");
+            throw new OutOfBoundaryException("é”™è¯¯ï¼ŒæŒ‡å®šçš„æ’å…¥åºå·è¶Šç•Œã€‚");
         SLNode p = getPreNode(i);
         SLNode q = new SLNode(e, p.getNext());
         p.setNext(q);
         size++;
     }
 
-    //½«Êı¾İÔªËØe²åÈëµ½ÔªËØobjÖ®Ç°
+    //å°†æ•°æ®å…ƒç´ eæ’å…¥åˆ°å…ƒç´ objä¹‹å‰
     @Override
     public boolean insertBefore(Object obj, Object e) {
         SLNode p = getPreNode(obj);
@@ -116,7 +116,7 @@ public class ListSLinked implements List {
         return false;
     }
 
-    //½«Êı¾İÔªËØe²åÈëµ½ÔªËØobjÖ®ºó
+    //å°†æ•°æ®å…ƒç´ eæ’å…¥åˆ°å…ƒç´ objä¹‹å
     @Override
     public boolean insertAfter(Object obj, Object e) {
         SLNode p = head.getNext();
@@ -130,11 +130,11 @@ public class ListSLinked implements List {
         return false;
     }
 
-    //É¾³ıÏßĞÔ±íÖĞĞòºÅÎªiµÄÔªËØ,²¢·µ»ØÖ®
+    //åˆ é™¤çº¿æ€§è¡¨ä¸­åºå·ä¸ºiçš„å…ƒç´ ,å¹¶è¿”å›ä¹‹
     @Override
     public Object remove(int i) throws OutOfBoundaryException {
         if (i < 0 || i >= size)
-            throw new OutOfBoundaryException("´íÎó£¬Ö¸¶¨µÄÉ¾³ıĞòºÅÔ½½ç¡£");
+            throw new OutOfBoundaryException("é”™è¯¯ï¼ŒæŒ‡å®šçš„åˆ é™¤åºå·è¶Šç•Œã€‚");
         SLNode p = getPreNode(i);
         Object obj = p.getNext().getData();
         p.setNext(p.getNext().getNext());
@@ -142,7 +142,7 @@ public class ListSLinked implements List {
         return obj;
     }
 
-    //É¾³ıÏßĞÔ±íÖĞµÚÒ»¸öÓëeÏàÍ¬µÄÔªËØ
+    //åˆ é™¤çº¿æ€§è¡¨ä¸­ç¬¬ä¸€ä¸ªä¸eç›¸åŒçš„å…ƒç´ 
     @Override
     public boolean remove(Object e) {
         SLNode p = getPreNode(e);
@@ -154,22 +154,22 @@ public class ListSLinked implements List {
         return false;
     }
 
-    //Ìæ»»ÏßĞÔ±íÖĞĞòºÅÎªiµÄÊı¾İÔªËØÎªe£¬·µ»ØÔ­Êı¾İÔªËØ
+    //æ›¿æ¢çº¿æ€§è¡¨ä¸­åºå·ä¸ºiçš„æ•°æ®å…ƒç´ ä¸ºeï¼Œè¿”å›åŸæ•°æ®å…ƒç´ 
     @Override
     public Object replace(int i, Object e) throws OutOfBoundaryException {
         if (i < 0 || i >= size)
-            throw new OutOfBoundaryException("´íÎó£¬Ö¸¶¨µÄĞòºÅÔ½½ç¡£");
+            throw new OutOfBoundaryException("é”™è¯¯ï¼ŒæŒ‡å®šçš„åºå·è¶Šç•Œã€‚");
         SLNode p = getNode(i);
         Object obj = p.getData();
         p.setData(e);
         return obj;
     }
 
-    //·µ»ØÏßĞÔ±íÖĞĞòºÅÎªiµÄÊı¾İÔªËØ
+    //è¿”å›çº¿æ€§è¡¨ä¸­åºå·ä¸ºiçš„æ•°æ®å…ƒç´ 
     @Override
     public Object get(int i) throws OutOfBoundaryException {
         if (i < 0 || i >= size)
-            throw new OutOfBoundaryException("´íÎó£¬Ö¸¶¨µÄĞòºÅÔ½½ç¡£");
+            throw new OutOfBoundaryException("é”™è¯¯ï¼ŒæŒ‡å®šçš„åºå·è¶Šç•Œã€‚");
         SLNode p = getNode(i);
         return p.getData();
     }

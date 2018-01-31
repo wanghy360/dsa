@@ -6,10 +6,10 @@ import dsa.strategy.Strategy;
 
 public class ListArray implements List {
 
-    private static final int LEN = 8;    //Êı×éµÄÄ¬ÈÏ´óĞ¡
-    private Strategy strategy;    //Êı¾İÔªËØ±È½Ï²ßÂÔ
-    private int size;            //ÏßĞÔ±íÖĞÊı¾İÔªËØµÄ¸öÊı
-    private Object[] elements;    //Êı¾İÔªËØÊı×é
+    private static final int LEN = 8;    //æ•°ç»„çš„é»˜è®¤å¤§å°
+    private Strategy strategy;    //æ•°æ®å…ƒç´ æ¯”è¾ƒç­–ç•¥
+    private int size;            //çº¿æ€§è¡¨ä¸­æ•°æ®å…ƒç´ çš„ä¸ªæ•°
+    private Object[] elements;    //æ•°æ®å…ƒç´ æ•°ç»„
 
     public ListArray() {
         this(new DefaultStrategy());
@@ -21,32 +21,32 @@ public class ListArray implements List {
         elements = new Object[LEN];
     }
 
-    //·µ»ØÏßĞÔ±íµÄ´óĞ¡£¬¼´Êı¾İÔªËØµÄ¸öÊı¡£
+    //è¿”å›çº¿æ€§è¡¨çš„å¤§å°ï¼Œå³æ•°æ®å…ƒç´ çš„ä¸ªæ•°ã€‚
     public int getSize() {
         return size;
     }
 
-    //Èç¹ûÏßĞÔ±íÎª¿Õ·µ»Øtrue£¬·ñÔò·µ»Øfalse¡£
+    //å¦‚æœçº¿æ€§è¡¨ä¸ºç©ºè¿”å›trueï¼Œå¦åˆ™è¿”å›falseã€‚
     public boolean isEmpty() {
         return size == 0;
     }
 
-    //ÅĞ¶ÏÏßĞÔ±íÊÇ·ñ°üº¬Êı¾İÔªËØe
+    //åˆ¤æ–­çº¿æ€§è¡¨æ˜¯å¦åŒ…å«æ•°æ®å…ƒç´ e
     public boolean contains(Object e) {
         return indexOf(e) >= 0;
     }
 
-    //·µ»ØÊı¾İÔªËØeÔÚÏßĞÔ±íÖĞµÄĞòºÅ
+    //è¿”å›æ•°æ®å…ƒç´ eåœ¨çº¿æ€§è¡¨ä¸­çš„åºå·
     public int indexOf(Object e) {
         for (int i = 0; i < size; i++)
             if (strategy.equal(e, elements[i])) return i;
         return -1;
     }
 
-    //½«Êı¾İÔªËØe²åÈëµ½ÏßĞÔ±íÖĞiºÅÎ»ÖÃ
+    //å°†æ•°æ®å…ƒç´ eæ’å…¥åˆ°çº¿æ€§è¡¨ä¸­iå·ä½ç½®
     public void insert(int i, Object e) throws OutOfBoundaryException {
         if (i < 0 || i > size)
-            throw new OutOfBoundaryException("´íÎó£¬Ö¸¶¨µÄ²åÈëĞòºÅÔ½½ç¡£");
+            throw new OutOfBoundaryException("é”™è¯¯ï¼ŒæŒ‡å®šçš„æ’å…¥åºå·è¶Šç•Œã€‚");
         if (size >= elements.length)
             expandSpace();
         System.arraycopy(elements, i, elements, i + 1, size - i);
@@ -61,14 +61,15 @@ public class ListArray implements List {
     }
 
     /**
-     * ²åÈëµ½ÏßĞÔ±íµÄ×îºóÎ»ÖÃ
-     * @param e Òª²åÈëµÄÔªËØ
+     * æ’å…¥åˆ°çº¿æ€§è¡¨çš„æœ€åä½ç½®
+     *
+     * @param e è¦æ’å…¥çš„å…ƒç´ 
      */
     public void insertLast(Object e) {
         insert(size, e);
     }
 
-    //½«Êı¾İÔªËØe²åÈëµ½ÔªËØobjÖ®Ç°
+    //å°†æ•°æ®å…ƒç´ eæ’å…¥åˆ°å…ƒç´ objä¹‹å‰
     public boolean insertBefore(Object obj, Object e) {
         int i = indexOf(obj);
         if (i < 0) return false;
@@ -76,7 +77,7 @@ public class ListArray implements List {
         return true;
     }
 
-    //½«Êı¾İÔªËØe²åÈëµ½ÔªËØobjÖ®ºó
+    //å°†æ•°æ®å…ƒç´ eæ’å…¥åˆ°å…ƒç´ objä¹‹å
     public boolean insertAfter(Object obj, Object e) {
         int i = indexOf(obj);
         if (i < 0) return false;
@@ -84,17 +85,17 @@ public class ListArray implements List {
         return true;
     }
 
-    //É¾³ıÏßĞÔ±íÖĞĞòºÅÎªiµÄÔªËØ,²¢·µ»ØÖ®
+    //åˆ é™¤çº¿æ€§è¡¨ä¸­åºå·ä¸ºiçš„å…ƒç´ ,å¹¶è¿”å›ä¹‹
     public Object remove(int i) throws OutOfBoundaryException {
         if (i < 0 || i >= size)
-            throw new OutOfBoundaryException("´íÎó£¬Ö¸¶¨µÄÉ¾³ıĞòºÅÔ½½ç¡£");
+            throw new OutOfBoundaryException("é”™è¯¯ï¼ŒæŒ‡å®šçš„åˆ é™¤åºå·è¶Šç•Œã€‚");
         Object obj = elements[i];
         System.arraycopy(elements, i + 1, elements, i, size - 1 - i);
         elements[--size] = null;
         return obj;
     }
 
-    //É¾³ıÏßĞÔ±íÖĞµÚÒ»¸öÓëeÏàÍ¬µÄÔªËØ
+    //åˆ é™¤çº¿æ€§è¡¨ä¸­ç¬¬ä¸€ä¸ªä¸eç›¸åŒçš„å…ƒç´ 
     public boolean remove(Object e) {
         int i = indexOf(e);
         if (i < 0) return false;
@@ -102,19 +103,19 @@ public class ListArray implements List {
         return true;
     }
 
-    //Ìæ»»ÏßĞÔ±íÖĞĞòºÅÎªiµÄÊı¾İÔªËØÎªe£¬·µ»ØÔ­Êı¾İÔªËØ
+    //æ›¿æ¢çº¿æ€§è¡¨ä¸­åºå·ä¸ºiçš„æ•°æ®å…ƒç´ ä¸ºeï¼Œè¿”å›åŸæ•°æ®å…ƒç´ 
     public Object replace(int i, Object e) throws OutOfBoundaryException {
         if (i < 0 || i >= size)
-            throw new OutOfBoundaryException("´íÎó£¬Ö¸¶¨µÄĞòºÅÔ½½ç¡£");
+            throw new OutOfBoundaryException("é”™è¯¯ï¼ŒæŒ‡å®šçš„åºå·è¶Šç•Œã€‚");
         Object obj = elements[i];
         elements[i] = e;
         return obj;
     }
 
-    //·µ»ØÏßĞÔ±íÖĞĞòºÅÎªiµÄÊı¾İÔªËØ
+    //è¿”å›çº¿æ€§è¡¨ä¸­åºå·ä¸ºiçš„æ•°æ®å…ƒç´ 
     public Object get(int i) throws OutOfBoundaryException {
         if (i < 0 || i >= size)
-            throw new OutOfBoundaryException("´íÎó£¬Ö¸¶¨µÄĞòºÅÔ½½ç¡£");
+            throw new OutOfBoundaryException("é”™è¯¯ï¼ŒæŒ‡å®šçš„åºå·è¶Šç•Œã€‚");
         return elements[i];
     }
 }

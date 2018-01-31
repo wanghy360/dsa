@@ -2,14 +2,14 @@ package dsa.strategy;
 
 
 public interface Strategy {
-    //ÅĞ¶ÏÁ½¸öÊı¾İÔªËØÊÇ·ñÏàµÈ
+    //åˆ¤æ–­ä¸¤ä¸ªæ•°æ®å…ƒç´ æ˜¯å¦ç›¸ç­‰
     boolean equal(Object obj1, Object obj2);
 
     /**
-     * ±È½ÏÁ½¸öÊı¾İÔªËØµÄ´óĞ¡
-     * Èç¹ûobj1 < obj2 ·µ»Ø-1
-     * Èç¹ûobj1 = obj2 ·µ»Ø0
-     * Èç¹ûobj1 > obj2 ·µ»Ø1
+     * æ¯”è¾ƒä¸¤ä¸ªæ•°æ®å…ƒç´ çš„å¤§å°
+     * å¦‚æœobj1 < obj2 è¿”å›-1
+     * å¦‚æœobj1 = obj2 è¿”å›0
+     * å¦‚æœobj1 > obj2 è¿”å›1
      */
     int compare(Object obj1, Object obj2);
 }

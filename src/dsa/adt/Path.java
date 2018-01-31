@@ -2,10 +2,10 @@ package dsa.adt;
 
 
 public class Path {
-	private int distance;	//ÆğµãÓëÖÕµãµÄ¾àÀë
-	private Vertex start;	//ÆğµãĞÅÏ¢
-	private Vertex end;		//ÖÕµãĞÅÏ¢
-	private LinkedList pathInfo;//Æğµãµ½ÖÕµãµÄÍêÕûÂ·¾¶
+	private int distance;	//èµ·ç‚¹ä¸ç»ˆç‚¹çš„è·ç¦»
+	private Vertex start;	//èµ·ç‚¹ä¿¡æ¯
+	private Vertex end;		//ç»ˆç‚¹ä¿¡æ¯
+	private LinkedList pathInfo;//èµ·ç‚¹åˆ°ç»ˆç‚¹çš„å®Œæ•´è·¯å¾„
 	
 	public Path() {
 		this(Integer.MAX_VALUE,null,null);
@@ -17,11 +17,11 @@ public class Path {
 		pathInfo = new LinkedListDLNode();
 	}
 	
-	//ÅĞ¶ÏÆğµãÓëÖÕµãÖ®¼äÊÇ·ñ´æÔÚÂ·¾¶
+	//åˆ¤æ–­èµ·ç‚¹ä¸ç»ˆç‚¹ä¹‹é—´æ˜¯å¦å­˜åœ¨è·¯å¾„
 	public boolean hasPath() { 
 		return distance!=Integer.MAX_VALUE&&start!=null&&end!=null;
 	}
-	//ÇóÂ·¾¶³¤¶È
+	//æ±‚è·¯å¾„é•¿åº¦
 	public int pathLength(){
 		if (!hasPath()) return -1;
 		else if (start==end) return 0;
@@ -37,11 +37,11 @@ public class Path {
 	public Iterator getPathInfo(){ 
 		return pathInfo.elements();
 	}
-	//Çå¿ÕÂ·¾­ĞÅÏ¢
+	//æ¸…ç©ºè·¯ç»ä¿¡æ¯
 	public void clearPathInfo(){
 		pathInfo = new LinkedListDLNode();
 	}
-	//Ìí¼ÓÂ·¾¶ĞÅÏ¢
+	//æ·»åŠ è·¯å¾„ä¿¡æ¯
 	public void addPathInfo(Object info){
 		pathInfo.insertLast(info);
 	}

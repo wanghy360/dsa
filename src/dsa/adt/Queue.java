@@ -3,18 +3,18 @@ package dsa.adt;
 import dsa.exception.QueueEmptyException;
 
 public interface Queue {
-	//·µ»Ø¶ÓÁĞµÄ´óĞ¡
+	//è¿”å›é˜Ÿåˆ—çš„å¤§å°
 	public int getSize();
 	
-	//ÅĞ¶Ï¶ÓÁĞÊÇ·ñÎª¿Õ
+	//åˆ¤æ–­é˜Ÿåˆ—æ˜¯å¦ä¸ºç©º
 	public boolean isEmpty();
 	
-	//Êı¾İÔªËØeÈë¶Ó
+	//æ•°æ®å…ƒç´ eå…¥é˜Ÿ
 	public void enqueue(Object e);
 	
-	//¶ÓÊ×ÔªËØ³ö¶Ó
+	//é˜Ÿé¦–å…ƒç´ å‡ºé˜Ÿ
 	public Object dequeue() throws QueueEmptyException;
 	
-	//È¡¶ÓÊ×ÔªËØ
+	//å–é˜Ÿé¦–å…ƒç´ 
 	public Object peek() throws QueueEmptyException;
 }

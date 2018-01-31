@@ -2,9 +2,9 @@ package dsa.adt;
 
 
 public class Vtime {
-	private int ve;	//×îÔç·¢ÉúÊ±¼ä
-	private int vl;	//×î³Ù·¢ÉúÊ±¼ä
-	//¹¹Ôì·½·¨
+	private int ve;	//æœ€æ—©å‘ç”Ÿæ—¶é—´
+	private int vl;	//æœ€è¿Ÿå‘ç”Ÿæ—¶é—´
+	//æ„é€ æ–¹æ³•
 	public Vtime() {
 		this(0,Integer.MAX_VALUE);
 	}

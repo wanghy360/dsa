@@ -3,45 +3,45 @@ package dsa.adt;
 import dsa.exception.OutOfBoundaryException;
 
 public class LinkedListIterator implements Iterator {
-	private LinkedList list;//Á´½Ó±í
-	private Node current;//µ±Ç°½áµã
+	private LinkedList list;//é“¾æ¥è¡¨
+	private Node current;//å½“å‰ç»“ç‚¹
 
-	//¹¹Ôì·½·¨
+	//æ„é€ æ–¹æ³•
 	public LinkedListIterator(LinkedList list) {
 		this.list = list;
-		if (list.isEmpty())		//ÈôÁĞ±íÎª¿Õ
-			current = null;		//Ôòµ±Ç°ÔªËØÖÃ¿Õ
+		if (list.isEmpty())		//è‹¥åˆ—è¡¨ä¸ºç©º
+			current = null;		//åˆ™å½“å‰å…ƒç´ ç½®ç©º
 		else
-			current = list.first();//·ñÔò´ÓµÚÒ»¸öÔªËØ¿ªÊ¼
+			current = list.first();//å¦åˆ™ä»ç¬¬ä¸€ä¸ªå…ƒç´ å¼€å§‹
 	}
 	
-	//ÒÆ¶¯µ½µÚÒ»¸öÔªËØ
+	//ç§»åŠ¨åˆ°ç¬¬ä¸€ä¸ªå…ƒç´ 
 	@Override
 	public void first(){
-		if (list.isEmpty())		//ÈôÁĞ±íÎª¿Õ
-			current = null;		//Ôòµ±Ç°ÔªËØÖÃ¿Õ
+		if (list.isEmpty())		//è‹¥åˆ—è¡¨ä¸ºç©º
+			current = null;		//åˆ™å½“å‰å…ƒç´ ç½®ç©º
 		else
-			current = list.first();//·ñÔò´ÓµÚÒ»¸öÔªËØ¿ªÊ¼		
+			current = list.first();//å¦åˆ™ä»ç¬¬ä¸€ä¸ªå…ƒç´ å¼€å§‹		
 	}
 	
-	//ÒÆ¶¯µ½ÏÂÒ»¸öÔªËØ
+	//ç§»åŠ¨åˆ°ä¸‹ä¸€ä¸ªå…ƒç´ 
 	@Override
 	public void next() throws OutOfBoundaryException{
 		if (isDone()) 
-			throw new OutOfBoundaryException("´íÎó£ºÒÑ¾­Ã»ÓĞÔªËØ¡£");
+			throw new OutOfBoundaryException("é”™è¯¯ï¼šå·²ç»æ²¡æœ‰å…ƒç´ ã€‚");
 		if (current==list.last()) current = null;
 		else current = list.getNext(current);
 	}
 	
-	//¼ì²éµü´úÆ÷ÖĞÊÇ·ñ»¹ÓĞÊ£ÓàµÄÔªËØ
+	//æ£€æŸ¥è¿­ä»£å™¨ä¸­æ˜¯å¦è¿˜æœ‰å‰©ä½™çš„å…ƒç´ 
 	@Override
 	public boolean isDone() { return current==null; }
 	
-	//·µ»Øµ±Ç°ÔªËØ
+	//è¿”å›å½“å‰å…ƒç´ 
 	@Override
 	public Object currentItem() throws OutOfBoundaryException{
 		if (isDone()) 
-			throw new OutOfBoundaryException("´íÎó£ºÒÑ¾­Ã»ÓĞÔªËØ¡£");
+			throw new OutOfBoundaryException("é”™è¯¯ï¼šå·²ç»æ²¡æœ‰å…ƒç´ ã€‚");
 		return current.getData();
 	}
 }

@@ -8,36 +8,36 @@ public class Sorter {
 		this.strategy = strategy;
 	}
 	
-	//¼òµ¥²åÈëÅÅĞò
+	//ç®€å•æ’å…¥æ’åº
 	public void insertSort(Object[] r, int low, int high){
 		for (int i=low+1; i<=high; i++)
-			if (strategy.compare(r[i],r[i-1])<0){	//Ğ¡ÓÚÊ±£¬Ğè½«r[i]²åÈëÓĞĞò±í
+			if (strategy.compare(r[i],r[i-1])<0){	//å°äºæ—¶ï¼Œéœ€å°†r[i]æ’å…¥æœ‰åºè¡¨
 				Object temp = r[i];
 				r[i] = r[i-1];
 				int j=i-2;
 				for (; j>=low&&strategy.compare(temp,r[j])<0; j--)
-					r[j+1] = r[j];					//¼ÇÂ¼ºóÒÆ
-				r[j+1] = temp;						//²åÈëµ½ÕıÈ·Î»ÖÃ
+					r[j+1] = r[j];					//è®°å½•åç§»
+				r[j+1] = temp;						//æ’å…¥åˆ°æ­£ç¡®ä½ç½®
 			}
 	}
 	
-	//ÕÛ°ë²åÈëÅÅĞò
+	//æŠ˜åŠæ’å…¥æ’åº
 	public void binInsertSort(Object[] r, int low, int high){
 		for (int i=low+1; i<=high; i++){
-				Object temp = r[i];					//±£´æ´ı²åÈëÔªËØ 
-				int hi = i-1;  int lo = low;		//ÉèÖÃ³õÊ¼Çø¼ä
-				while (lo<=hi){						//ÕÛ°ëÈ·¶¨²åÈëÎ»ÖÃ
+				Object temp = r[i];					//ä¿å­˜å¾…æ’å…¥å…ƒç´  
+				int hi = i-1;  int lo = low;		//è®¾ç½®åˆå§‹åŒºé—´
+				while (lo<=hi){						//æŠ˜åŠç¡®å®šæ’å…¥ä½ç½®
 				int mid = (lo+hi)/2;
 				if(strategy.compare(temp,r[mid])<0)
 					hi = mid - 1;
 				else lo = mid + 1;
 			}
-			for (int j=i-1;j>hi;j--) r[j+1] = r[j];	//ÒÆ¶¯ÔªËØ
-			r[hi+1] = temp;							//²åÈëÔªËØ
+			for (int j=i-1;j>hi;j--) r[j+1] = r[j];	//ç§»åŠ¨å…ƒç´ 
+			r[hi+1] = temp;							//æ’å…¥å…ƒç´ 
 		}//for
 	}
 	
-	//Ï£¶ûÅÅĞò
+	//å¸Œå°”æ’åº
 	public void shellSort(Object[] r, int low, int high, int[] delta){
 		for (int k=0;k<delta.length;k++)
 			shellInsert(r, low, high, delta[k]);
@@ -53,7 +53,7 @@ public class Sorter {
 			}
 	}
 	
-	//ÆğÅİÅÅĞò
+	//èµ·æ³¡æ’åº
 	public void bubbleSort(Object[] r, int low, int high){
 		int n = high - low + 1;
 		for (int i=1;i<n;i++)
@@ -66,7 +66,7 @@ public class Sorter {
 				}
 	}
 	
-	//¿ìËÙÅÅĞò
+	//å¿«é€Ÿæ’åº
 	public void quickSort(Object[] r, int low, int high){
 		if (low<high){
 			int pa = partition(r,low,high);
@@ -86,7 +86,7 @@ public class Sorter {
 		return low;
 	}
 	
-	//Ñ¡ÔñÅÅĞò
+	//é€‰æ‹©æ’åº
 	public void selectSort(Object[] r, int low, int high){
 		for (int k=low; k<high-1; k++){
 			int min = k;
@@ -100,7 +100,7 @@ public class Sorter {
 		}
 	}
 	
-	//¶ÑÅÅĞò
+	//å †æ’åº
 	public void heapSort(Object[] r){
 		int n = r.length - 1;
 		for (int i=n/2; i>=1; i--)
@@ -122,7 +122,7 @@ public class Sorter {
 		r[low] = temp;
 	}
 	
-	//¹é²¢ÅÅĞò
+	//å½’å¹¶æ’åº
 	public void mergeSort(Object[] r, int low, int high){
     	if (low<high){
     		mergeSort(r,low,(high+low)/2);
